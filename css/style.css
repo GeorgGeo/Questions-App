@@ -1,0 +1,127 @@
+@import './reset.css';
+@import './media.css';
+:root {
+  --main-color: dodgerblue;
+  --black: #202020;
+  --light-black: #383838;
+  --text-color: #fff;
+  --max-width: 120rem;
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.7);
+
+  /* typography */
+  
+  --big-fz: calc(30px + (75 - 60) * ((100vw - 300px) / (1200 - 300)));
+  --medium-fz: calc(18px + (35 - 18) * ((100vw - 300px) / (1200 - 300)));
+  --small-fz: calc(15px + (18 - 15) * ((100vw - 300px) / (1200 - 300)));
+}
+body {
+  border: 1px solid var(--light-black);
+  padding: 15px;
+  opacity: 0.85;
+  /* height: 90vh; */
+  /* overflow: hidden; */
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+}
+/* Common styles */
+.button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  background-color: var(--main-color);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+.button:hover {
+  box-shadow: 0 1rem 2rem var(--main-color);
+  transform: translateY(-5px) scale(1.05) rotateX(7deg);
+}
+.button:focus {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+/* #region header */
+.header-title {
+  font-size: var(--big-fz);
+  color: var(--light-black);
+}
+/* #endregion header */
+/* #region main */
+.card,
+.create-card {
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  /* height: 100%; */
+  min-height: 100%;
+  /* margin-top: auto; */
+}
+.btn-sm {
+  --bs-btn-padding-y: 0.05rem;
+  --bs-btn-padding-x: 0.25rem;
+  --bs-btn-font-size: 2rem;
+  --bs-btn-border-radius: var(--bs-border-radius-sm);
+}
+.card-link {
+  color: var(--main-color);
+  opacity: 0.85;
+  margin-top: auto;
+}
+.card-link:hover {
+  color: rgba(0, 123, 255, 0.95);
+  text-shadow: 0 0 8px rgba(255, 60, 0, 0.6);
+}
+/* #endregion main */
+/* #region create card */
+.input-group>.form-select {
+  width: 130px;
+}
+.form-select {
+  background-color: rgba(104, 92, 92, 0.7);
+}
+.form-control {
+  background-color: rgba(198, 185, 185, 0.7);
+}
+.input-group-text {
+  border: none;
+  background-color: transparent;
+  padding: .375rem;
+}
+.title-answer {
+  color: var(--black);
+  font-weight: bold;
+  text-shadow: 2px 2px 5px rgba(0, 123, 255, 0.6);
+}
+.create-card .col-12:last-child {
+  position: sticky;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9); /* Полупрозрачный фон для видимости */
+  padding: 10px 0;
+}
+.create-quiz {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  /* transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; */
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  display: none;
+}
+.create-quiz.actives {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  position: relative;
+  transform: translateY(0);
+}
+.main-card, .create-quiz {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+/* #endregion create card */

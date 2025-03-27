@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Questionnaire Builder App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/media.css">
+</head>
+<body>
+  <main class="main">
+    <section class="main-card">
+      <div class="container">
+        <h1 class="header-title">Quiz Catalog</h1>
+        <div class="row">
+          <div class="col-sm-4 mb-3 mb-sm-0 card-template">
+            <div class="card text-bg-light border-primary mb-3 mt-3" style="width: 100%; height: 12rem; position: relative;">
+              <div class="card-body">
+                <!-- Кнопка действий (три точки) -->
+                <div class="dropdown position-absolute top-0 end-0 mt-2 me-2">
+                  <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    &#x22EE; <!-- Юникод символ для трёх вертикальных точек -->
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#" id="correct">Редактировать</a></li>
+                    <li><a class="dropdown-item" href="#" id="start">Запустить</a></li>
+                    <li><a class="dropdown-item text-danger" href="#" id="del">Удалить</a></li>
+                  </ul>
+                </div>
+                <!--  -->
+                <h5 class="card-title mb-4">Quiz name</h5>
+                <h6 class="card-subtitle pt-2 mb-2 text-body-secondary">Quiz description</h6>
+                <a href="#" class="card-link">Question 17</a>
+                <!-- <a href="#" class="card-link">Another link</a> -->
+                <p class="card-text">Вопросов: 17</p>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+    <!-- /.container -->
+    </section>
+    <!-- /.main-card -->
+    <section class="create-quiz">
+      <div class="container">
+        <h1 class="header-title mb-3">Create quiz</h1>
+        <div class="row">
+          <!-- Create Card -->
+          <div class="create-card text-bg-light border-primary p-3" style="width: 100%; position: relative;">
+            <div class="question-form">
+              <form id="questionnaireForm" class="w-100 d-flex flex-wrap justify-content-between row g-3 align-items-center row-cols-sm-auto">
+                <!--  -->
+                <div class="question-one question-template w-100 d-flex flex-wrap justify-content-between row align-items-end row-cols-sm-auto mb-3">
+                  <div class="col-12">
+                    <label class="visually-label p-3" for="questionText">Question</label>
+                    <div class="input-group mb-3">
+                      <div class="input-group-text">1.</div>
+                      <input type="text" class="form-control" id="questionText" placeholder="Some text">
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="input-group mb-3">
+                      <div class="input-group-text pe-3"></div> <!-- Пустой div для выравнивания -->
+                      <select class="form-select" id="questionType">
+                        <option selected>Type...</option>
+                        <option value="text">Text</option>
+                        <option value="single">Single choice</option>
+                        <option value="multiple">Multiple choice</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-12 ps-4">
+                    <button type="submit" class="btn btn-primary remove-question">Remove</button>
+                  </div>
+      
+                </div>
+                <!-- /.question-one -->
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary" id="addQuestion">Add question</button>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-success" id="saveQuestion">Save Questionnaire</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.question-form -->
+          </div>
+          <!-- /.create-card -->
+        </div>
+      </div>
+      <!-- /.container -->
+    </section>
+    <!-- /.create-quiz -->
+    <section class="interactive-quiz" style="display: none;">
+      <div class="container">
+        <h1 class="header-title mb-3">Заполнить анкету</h1>
+        <div class="row">
+          <div class="quiz-card text-bg-light border-primary p-3" style="width: 100%; position: relative;">
+            <form id="interactiveForm" class="w-100 d-flex flex-wrap justify-content-between row g-3 align-items-center row-cols-sm-auto">
+              <!-- Пример вопроса с текстовым вводом -->
+              <div class="col-12">
+                <label class="visually-label p-3" for="question1">Вопрос 1</label>
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" id="question1" name="question1" placeholder="Ваш ответ">
+                </div>
+              </div>
+
+              <!-- Пример вопроса с одиночным выбором -->
+              <div class="col-12">
+                <label class="visually-label p-3" for="question2">Вопрос 2</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="question2" id="question2Option1" value="Option 1">
+                  <label class="form-check-label" for="question2Option1">Вариант 1</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="question2" id="question2Option2" value="Option 2">
+                  <label class="form-check-label" for="question2Option2">Вариант 2</label>
+                </div>
+              </div>
+
+              <!-- Пример вопроса с множественным выбором -->
+              <div class="col-12">
+                <label class="visually-label p-3" for="question3">Вопрос 3</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="question3" id="question3Option1" value="Option 1">
+                  <label class="form-check-label" for="question3Option1">Вариант 1</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="question3" id="question3Option2" value="Option 2">
+                  <label class="form-check-label" for="question3Option2">Вариант 2</label>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-success">Отправить ответы</button>
+              </div>
+            </form>
+            <div class="summary" style="display: none;">
+              <h2>Ваши ответы:</h2>
+              <div id="answersSummary"></div>
+              <p>Время заполнения: <span id="timeTaken"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- /.interactive-quiz -->
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!--  -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCxE2Ou0J5Jj-5BTbCk6VCkszE8IWcXagk",
+      authDomain: "questionsapp-a98b8.firebaseapp.com",
+      projectId: "questionsapp-a98b8",
+      storageBucket: "questionsapp-a98b8.firebasestorage.app",
+      messagingSenderId: "869315385684",
+      appId: "1:869315385684:web:22b16c35caf1b34aafd0c1",
+      measurementId: "G-VXT9B8MLMS"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    // Инициализация Firestore
+    const db = getFirestore(app);
+    
+    // Делаем db доступной глобально (для app.js)
+    window.db = db;
+    window.firebaseAddDoc = addDoc;
+    window.firebaseCollection = collection;
+
+    // Экспорт для app.js
+    window.firebase = {
+      db,
+      collection,
+      addDoc,
+      serverTimestamp
+    };
+  </script>
+  <!--  -->
+  <script src="./app.js"></script>
+</body>
+</html>
